@@ -52,12 +52,20 @@
                       <p class="text-sm text-gray-500">Key: {{ key.key }}</p>
                       <p class="text-xs text-gray-400">Created: {{ new Date(key.created_at).toLocaleDateString() }}</p>
                     </div>
-                    <button
-                      @click="deleteApiKey(key)"
-                      class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-                    >
-                      Delete
-                    </button>
+                    <div class="flex space-x-2">
+                      <a
+                        :href="route('api-keys.preview', key.uuid)"
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      >
+                        View API Response
+                      </a>
+                      <button
+                        @click="deleteApiKey(key)"
+                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </li>
               </ul>

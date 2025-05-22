@@ -38,4 +38,20 @@ class ApiKeyController extends Controller
 
         return redirect()->back()->with('success', 'API key deleted successfully.');
     }
+
+    public function preview(ApiKey $apiKey)
+    {
+        if ($apiKey->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $playlists = $apiKey->user->playlists()
+            ->with('tracks')
+            ->get();
+
+        return Inertia::render('ApiKeys/Preview', [
+            'apiKey' => $apiKey,
+            'playlists' => $playlists
+        ]);
+    }
 }
